@@ -70,22 +70,18 @@
 "use strict";
 
 
-// import a  from 'mod/a.js';
-
+// require('lib/bootstrap.min.css');
 __webpack_require__(1);
-// require('css/b.scss');
-
-
-var ccc = 'hahaha';
-
-var aaa = 'wahaha';
-
-// const $ = require('jquery')
-// alert($.ajax);
-// console.log($)
+__webpack_require__(2);
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

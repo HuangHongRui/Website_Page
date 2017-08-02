@@ -5,7 +5,6 @@ const path = require('path'),
   ExtractTextPlugin = require("extract-text-webpack-plugin"),
   WebpackNotifierPlugin = require('webpack-notifier');
 
-
 let base = {
   index:'./js/app/index.js',
   // common:"./common.js"
@@ -26,6 +25,8 @@ module.exports = {
       // test:path.resolve(__dirname,'test/test.js')
       jquery: path.resolve(__dirname, "js/lib/jquery-2.0.3.min.js"),
       mod: path.resolve(__dirname, "js/mod"),
+      lib: path.resolve(__dirname, "js/lib"),
+      img: path.resolve(__dirname, "img"),
       css: path.resolve(__dirname, "css")
     }
   },
