@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./css/test.css"],"names":[],"mappings":"AAAA,EACC,SAAW,CAIZ,GACC,UAAY,CAIb,GACC,WAAa","file":"index.css","sourcesContent":["p {\n\tcolor: red;\n}\n\n\nh1 {\n\tcolor: blue;\n}\n\n\nh2 {\n\tcolor: green;\n}\n\n\n// WEBPACK FOOTER //\n// ./css/test.css"],"sourceRoot":""}

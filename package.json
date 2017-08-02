@@ -9,17 +9,8 @@
     "webpack2"
   ],
   "scripts": {
-    "entry": "node ./command.js -f=entry",
-    "output": "node ./command.js -f=output",
-    "split": "node ./command.js -f=code_split",
-    "module": "node ./command.js -f=modules",
-    "resolve": "node ./command.js -f=resolve",
-    "devtool": "node ./command.js -f=devtool",
-    "loaders": "node ./command.js -f=loaders",
-    "plugins": "node ./command.js -f=plugins",
-    "hoist": "node ./command.js -f=scope-hoisting",
-    "require": "node ./command.js -f=require",
-    "write": "webpack"
+    "write": "webpack",
+    "watch": "onchange 'src/**/*.js' 'src/**/*.css' 'src/**/*.less' 'src/**/*.scss' -- npm run webpack"
   },
   "author": "slashhuang",
   "license": "MIT",
@@ -52,6 +43,7 @@
   "devDependencies": {
     "core-js": "^2.4.1",
     "node-sass": "^4.5.3",
+    "optimize-css-assets-webpack-plugin": "^3.0.0",
     "sass": "^1.0.0-beta.2",
     "sass-loader": "^3.2.3",
     "scss": "^0.2.4",
