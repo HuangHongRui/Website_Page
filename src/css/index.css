@@ -466,7 +466,7 @@ nav {
 		/*border: solid 1px ;*/
 		padding: 20px;
 		position: relative;
-		background-image: url(../img/06.jpeg);
+		background-image: url(../img/hzw/3.jpg);
 		background-size: cover;
 		background-position: center center;	
 		background-attachment: scroll;
@@ -857,13 +857,13 @@ nav {
 }
 
 .pt-section-5 .pt-section-5-bg {
-	background-image: url(../img/3.jpeg);
+	background-image: url(../img/hzw/22.png);
 	background-attachment: scroll;
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center center;
 	color: #fff;
-	padding: 150px 0;
+	padding: 200px 0;
 }
 
 .pt-menu input,
@@ -875,7 +875,7 @@ nav {
 	font-size: 14px;
 	line-height: 1.5;
 	color: #555;
-	background-color: #fff;
+	background-color: #FDD;
 	background-image: none;
 	border: 1px solid #ccc;
 	border-radius: 4px;
