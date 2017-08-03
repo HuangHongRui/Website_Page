@@ -72,7 +72,8 @@ nav {
     padding: 10px 0;
     width: 100%;
     min-width: 768px;
-    background: rgba(0, 0, 0, 0.7);
+    background:#D9312B;
+    opacity: 0.8;
     top: 0;
     box-shadow: 0 1px 3px #333;
     z-index: 1000;
@@ -111,7 +112,8 @@ nav {
     text-transform: uppercase;
     color: #fff;
     padding: 15px;
-    font-weight: 400;
+	font-size: 15px;
+    font-weight: 900;
     display: block;
     letter-spacing: 1px;
 }
@@ -215,11 +217,11 @@ nav {
 	#carousel-ct .carousel {
 		margin: auto;
 		position: relative;
-		max-width: 1300px;
+		max-width: 1318px;
 		min-height: 650px;
 		overflow: hidden;
 		border: solid 1px rgba(255,255,0,0.5);
-		border-radius: 20px;
+		border-radius: 5px;
 		box-shadow:0px 0 100px  rgba(255,255,0,0.5)
 	}
 
@@ -240,7 +242,8 @@ nav {
 	}
 
 	#carousel-ct .carousel .img-ct img {
-		min-width: 1300px;
+		// min-width: 1300px;
+		min-width: 1318px;
 		max-height: 700px;
 		cursor: default;
 	}
@@ -314,6 +317,20 @@ nav {
 	text-align: center;
 }
 
+.pt-section-show .sl-img {
+	overflow: hidden;
+	margin: 10px auto;
+	width: 200px;
+	height: 200px;
+	border: solid 5px #d9312b;
+	border-radius: 50px;
+}
+
+.pt-section-show .sl-img img{
+	width: 100%;
+	height: 100%;
+}
+
 .pt-section-1 .pt-section-show span .fa-circle {
 	position: relative;
 	color: #fed136;
@@ -375,7 +392,7 @@ nav {
 
 .pt-section-2 .pt-section-title h4 {
 	font-size: 18px;
-	font-weight: 800px;
+	font-weight: 800;
 	line-height: 1.2em;
 	text-transform: capitalize;
 	padding: 0;
@@ -387,6 +404,15 @@ nav {
 	font-size: 16px;
 	line-height: 1.7em;
 	margin: 0;
+}
+
+.pt-section-2 .ppinfo {
+	height: 250px;
+}
+
+.pt-section-2 .ppinfo h4{
+	margin-bottom: 10px;
+	color: #d9312b;
 }
 
 .pt-section-2 .show-pic-block .pic-placeholder {
@@ -569,7 +595,7 @@ nav {
 
 .pt-section-3 li div time {
 	font-size: 18px;
-	font-weight: 800px;
+	font-weight: 800;
 	line-height: 1.6em;
 	text-transform: capitalize;
 }
