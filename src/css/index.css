@@ -28,6 +28,7 @@ p {
 	font-weight: 800;
 	line-height: 1em;
 	margin-bottom: 25px;
+	text-shadow: 0px 0px 15px #d9312b;
 }
 
 .pt-section-intro p {
@@ -44,7 +45,8 @@ p {
 /* 抽象h4 */
 .pt-section-show h4 {
 	font-size: 18px;
-	font-weight: 800px;
+	font-weight: 800;
+	color: #d9312b;
 	line-height: 1.2em;
 	text-transform: capitalize;
 	padding: 0;
@@ -381,7 +383,9 @@ nav {
 }
 
 .pt-section-2 .show-pic-block img{
-	width: 100%;
+	border-radius: 20px 20px 0 0;
+    width: 100%;
+    box-shadow: 1px 1px 15px 3px rgba(0,0,0,0.5);
 }
 
 .pt-section-2 .pt-section-title {
@@ -558,12 +562,17 @@ nav {
 
 .pt-section-3 li img {
 	/*position: relative;*/
-	max-width: 180px;
-	max-height: 180px;
+	width: 180px;
+	height: 180px;
 	border-radius: 90px;
 	border: 7px solid #f1f1f1;
+	box-shadow: 1px 1px 15px 3px rgba(0,0,0,0.5);
 }
 
+.pt-section-3 #flag {
+	border-radius: 20px;
+	box-shadow: 1px 1px 15px 3px rgba(0,0,0,0.5);
+}
 /*.pt-section-3 li .pt-section-type {
 	position: absolute;
 	max-width: 380px;
@@ -629,7 +638,6 @@ nav {
 		content: "";
 		display: block;
 		clear: both;
-		padding-bottom: 200px;
 	}
 
 
@@ -848,12 +856,10 @@ nav {
 
 /* start section-5*/
 
-.pt-section-5 .ad-top {
-	padding: 50px;
-}
 
 .pt-section-5 .ad-top img{
 	cursor: pointer;
+	padding: 0;
 }
 
 .pt-section-5 .pt-section-5-bg {
