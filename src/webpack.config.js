@@ -100,7 +100,7 @@ module.exports = {
         })
       },
       {
-        test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg|swf)$/,
+        test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg|swf|ico)$/,
         use: {
           loader:'file-loader',
           options:{

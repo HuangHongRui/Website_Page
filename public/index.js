@@ -2430,113 +2430,113 @@ module.exports = __webpack_amd_options__;
 
 var carousel = function () {
 
-    function Carousel($node) {
-        this.$node = $node;
-        this.init();
-        this.bind();
+  function Carousel($node) {
+    this.$node = $node;
+    this.init();
+    this.bind();
+  }
+
+  Carousel.prototype = {
+
+    init: function init() {
+      var $ct = this.$ct = this.$node.find('.img-ct'),
+          $img = this.$img = this.$node.find('.img-ct >li'),
+          $turnLeft = this.$turnLeft = this.$node.find('.turnLeft'),
+          $turnRight = this.$turnRight = this.$node.find('.turnRight'),
+          $indexBtn = this.$indexBtn = this.$node.find('.bullet li'),
+          $deleventA = this.$deleventA = this.$node.find('a');
+      this.imgLen = $img.length;
+      this.imgWidth = $img.width();
+      this.pageIndex = 0;
+      this.lock = false;
+      this.clock = true;
+      $ct.append($img.first().clone());
+      $ct.prepend($img.last().clone());
+      $ct.width((this.imgLen + 2) * this.imgWidth);
+      $ct.css({ left: -this.imgWidth });
+    },
+
+    bind: function bind() {
+      var _this = this;
+      this.$turnLeft.on('click', function (e) {
+        _this.turnLeft(1);
+      });
+
+      this.$turnRight.on('click', function (e) {
+        _this.turnRight(1);
+      });
+
+      this.$indexBtn.on('click', function (e) {
+        var index = $(this).index();
+        if (index > _this.pageIndex) {
+          _this.turnRight(index - _this.pageIndex);
+        } else if (_this.pageIndex > index) {
+          _this.turnLeft(_this.pageIndex - index);
+        }
+      });
+
+      this.$deleventA.click(function (e) {
+        e.preventDefault();
+      });
+
+      _this.$node.hover(function () {
+        _this.clock = false;
+      }, function () {
+        _this.clock = true;
+      });
+
+      setInterval(function () {
+        if (_this.clock) {
+
+          _this.turnRight(1);
+        }
+      }, 3000);
+    },
+
+    turnRight: function turnRight(idx) {
+      var _this = this;
+      if (this.lock) return;
+      this.lock = true;
+      this.$ct.animate({
+        left: '-=' + idx * this.imgWidth
+      }, function () {
+        _this.pageIndex += idx;
+        if (_this.pageIndex === _this.imgLen) {
+          _this.pageIndex = 0;
+          _this.$ct.css({ left: -_this.imgWidth });
+        }
+        _this.setBtnStyle();
+        _this.lock = false;
+      });
+    },
+
+    turnLeft: function turnLeft(idx) {
+      var _this = this;
+      if (this.lock) return;
+      this.lock = true;
+      this.$ct.animate({
+        left: "+=" + idx * _this.imgWidth
+      }, function () {
+        _this.pageIndex -= idx;
+        if (_this.pageIndex < 0) {
+          _this.pageIndex = _this.imgLen - 1;
+          _this.$ct.css({ left: -_this.imgLen * _this.imgWidth });
+        }
+        _this.setBtnStyle();
+        _this.lock = false;
+      });
+    },
+
+    setBtnStyle: function setBtnStyle() {
+      var _this = this;
+      this.$indexBtn.removeClass('active').eq(_this.pageIndex).addClass('active');
     }
-
-    Carousel.prototype = {
-
-        init: function init() {
-            var $ct = this.$ct = this.$node.find('.img-ct'),
-                $img = this.$img = this.$node.find('.img-ct >li'),
-                $turnLeft = this.$turnLeft = this.$node.find('.turnLeft'),
-                $turnRight = this.$turnRight = this.$node.find('.turnRight'),
-                $indexBtn = this.$indexBtn = this.$node.find('.bullet li'),
-                $deleventA = this.$deleventA = this.$node.find('a');
-            this.imgLen = $img.length;
-            this.imgWidth = $img.width();
-            this.pageIndex = 0;
-            this.lock = false;
-            this.clock = true;
-            $ct.append($img.first().clone());
-            $ct.prepend($img.last().clone());
-            $ct.width((this.imgLen + 2) * this.imgWidth);
-            $ct.css({ left: -this.imgWidth });
-        },
-
-        bind: function bind() {
-            var _this = this;
-            this.$turnLeft.on('click', function (e) {
-                _this.turnLeft(1);
-            });
-
-            this.$turnRight.on('click', function (e) {
-                _this.turnRight(1);
-            });
-
-            this.$indexBtn.on('click', function (e) {
-                var index = $(this).index();
-                if (index > _this.pageIndex) {
-                    _this.turnRight(index - _this.pageIndex);
-                } else if (_this.pageIndex > index) {
-                    _this.turnLeft(_this.pageIndex - index);
-                }
-            });
-
-            this.$deleventA.click(function (e) {
-                e.preventDefault();
-            });
-
-            _this.$node.hover(function () {
-                _this.clock = false;
-            }, function () {
-                _this.clock = true;
-            });
-
-            setInterval(function () {
-                if (_this.clock) {
-
-                    _this.turnRight(1);
-                }
-            }, 3000);
-        },
-
-        turnRight: function turnRight(idx) {
-            var _this = this;
-            if (this.lock) return;
-            this.lock = true;
-            this.$ct.animate({
-                left: '-=' + idx * this.imgWidth
-            }, function () {
-                _this.pageIndex += idx;
-                if (_this.pageIndex === _this.imgLen) {
-                    _this.pageIndex = 0;
-                    _this.$ct.css({ left: -_this.imgWidth });
-                }
-                _this.setBtnStyle();
-                _this.lock = false;
-            });
-        },
-
-        turnLeft: function turnLeft(idx) {
-            var _this = this;
-            if (this.lock) return;
-            this.lock = true;
-            this.$ct.animate({
-                left: "+=" + idx * _this.imgWidth
-            }, function () {
-                _this.pageIndex -= idx;
-                if (_this.pageIndex < 0) {
-                    _this.pageIndex = _this.imgLen - 1;
-                    _this.$ct.css({ left: -_this.imgLen * _this.imgWidth });
-                }
-                _this.setBtnStyle();
-                _this.lock = false;
-            });
-        },
-
-        setBtnStyle: function setBtnStyle() {
-            var _this = this;
-            this.$indexBtn.removeClass('active').eq(_this.pageIndex).addClass('active');
-        }
-    };
-    return {
-        autoGo: function autoGo(node) {
-            new Carousel(node);
-        }
-    };
+  };
+  return {
+    autoGo: function autoGo(node) {
+      new Carousel(node);
+    }
+  };
 }();
 
 // carousel.autoGo($('.carousel'))
@@ -2556,33 +2556,33 @@ module.exports = carousel;
  */
 
 function HideNav(tagnode) {
-    this.tagnode = tagnode;
-    this.start();
+  this.tagnode = tagnode;
+  this.start();
 }
 
 HideNav.prototype = {
-    start: function start() {
-        var _this = this;
-        var befor = 0;
-        var now = 1;
-        $(window).on('scroll', function () {
-            var scrollTop = $(window).scrollTop();
-            if (now > befor) {
-                _this.tagnode.fadeOut(500);
-                var clock = true;
-                befor = now;
-                now = scrollTop;
-                // console.log('b = '+ befor);
-                // console.log('n = '+ now);
-            } else if (now <= befor) {
-                _this.tagnode.fadeIn(500);
-                befor = now;
-                now = scrollTop;
-                // console.log('-b = '+ befor);
-                // console.log('-n = '+ now);
-            }
-        });
-    }
+  start: function start() {
+    var _this = this;
+    var befor = 0;
+    var now = 1;
+    $(window).on('scroll', function () {
+      var scrollTop = $(window).scrollTop();
+      if (now > befor) {
+        _this.tagnode.fadeOut(500);
+        var clock = true;
+        befor = now;
+        now = scrollTop;
+        // console.log('b = '+ befor);
+        // console.log('n = '+ now);
+      } else if (now <= befor) {
+        _this.tagnode.fadeIn(500);
+        befor = now;
+        now = scrollTop;
+        // console.log('-b = '+ befor);
+        // console.log('-n = '+ now);
+      }
+    });
+  }
 };
 
 // new HideNav($('#nav'));
@@ -2597,110 +2597,110 @@ module.exports = HideNav;
 /* WEBPACK VAR INJECTION */(function($) {
 
 var cascade = function () {
-	function _Cascade($ct) {
-		this.$ct = $ct;
-		this.init();
-		this.bind();
-		// this.resize()
-	}
+  function _Cascade($ct) {
+    this.$ct = $ct;
+    this.init();
+    this.bind();
+    // this.resize()
+  }
 
-	_Cascade.prototype = {
-		init: function init() {
-			var _this = this;
-			this.pageIndex = 1;
-			this.messageNum = 3;
-			this.item = this.$ct.find('.item');
-			this.eleWidth = this.item.outerWidth(true);
-			this.picCt = this.$ct.find('#pic-ct');
-			this.rowEleCount = parseInt(this.picCt.width() / this.eleWidth);
-			this.btn = this.$ct.find('.newsLoad');
-			this.cascadeArray = [];
-			this.lock = false;
-			for (var i = 0; i < this.rowEleCount; i++) {
-				this.cascadeArray[i] = 0;
-			}
-		},
+  _Cascade.prototype = {
+    init: function init() {
+      var _this = this;
+      this.pageIndex = 1;
+      this.messageNum = 3;
+      this.item = this.$ct.find('.item');
+      this.eleWidth = this.item.outerWidth(true);
+      this.picCt = this.$ct.find('#pic-ct');
+      this.rowEleCount = parseInt(this.picCt.width() / this.eleWidth);
+      this.btn = this.$ct.find('.newsLoad');
+      this.cascadeArray = [];
+      this.lock = false;
+      for (var i = 0; i < this.rowEleCount; i++) {
+        this.cascadeArray[i] = 0;
+      }
+    },
 
-		bind: function bind() {
-			var _this = this;
-			this.touchEven();
-			this.btn.on('click', function () {
-				if (_this.lock) return;
-				// if (_this.isVisible(_this.$ct.find('#load'))){
-				_this.touchEven();
-				// }
-			});
-		},
+    bind: function bind() {
+      var _this = this;
+      this.touchEven();
+      this.btn.on('click', function () {
+        if (_this.lock) return;
+        // if (_this.isVisible(_this.$ct.find('#load'))){
+        _this.touchEven();
+        // }
+      });
+    },
 
-		touchEven: function touchEven() {
-			var _this = this;
-			this.getData(function (newsList) {
-				//获取数据——数据为新闻数组～
-				_this.lock = false;
-				$.each(newsList, function (idx, news) {
-					//遍历每一个
-					var $node = _this.transformNode(news); //给我一个，我转一个，转换数据为节点————赋给$node
-					$node.find('img').load(function () {
-						//等加载完img后...
-						_this.picCt.append($node); //插入文档～
-						_this.cascadeType($node); //再使用瀑布式排列0.0
-					});
-				});
-			});
-			this.lock = true; //锁上
-		},
+    touchEven: function touchEven() {
+      var _this = this;
+      this.getData(function (newsList) {
+        //获取数据——数据为新闻数组～
+        _this.lock = false;
+        $.each(newsList, function (idx, news) {
+          //遍历每一个
+          var $node = _this.transformNode(news); //给我一个，我转一个，转换数据为节点————赋给$node
+          $node.find('img').load(function () {
+            //等加载完img后...
+            _this.picCt.append($node); //插入文档～
+            _this.cascadeType($node); //再使用瀑布式排列0.0
+          });
+        });
+      });
+      this.lock = true; //锁上
+    },
 
-		getData: function getData(callback) {
-			var _this = this;
-			$.ajax({
-				url: 'https://platform.sina.com.cn/slide/album_tech',
-				jsonp: 'jsoncallback',
-				dataType: 'jsonp',
-				data: {
-					app_key: '1271687855',
-					num: _this.messageNum,
-					page: _this.pageIndex
-				}
-			}).done(function (ret) {
-				_this.pageIndex++;
-				if (ret && ret.status && ret.status.code === '0') {
-					callback(ret.data);
-				} else {
-					alert('Sorry>B-Bye~');
-				}
-			});
-		},
+    getData: function getData(callback) {
+      var _this = this;
+      $.ajax({
+        url: 'https://platform.sina.com.cn/slide/album_tech',
+        jsonp: 'jsoncallback',
+        dataType: 'jsonp',
+        data: {
+          app_key: '1271687855',
+          num: _this.messageNum,
+          page: _this.pageIndex
+        }
+      }).done(function (ret) {
+        _this.pageIndex++;
+        if (ret && ret.status && ret.status.code === '0') {
+          callback(ret.data);
+        } else {
+          alert('Sorry>B-Bye~');
+        }
+      });
+    },
 
-		transformNode: function transformNode(datas) {
-			var nodes = '';
-			nodes += '<li class="item">';
-			nodes += '<a href="' + datas.url + '" class="link"><img src="' + datas.img_url + '" alt=""></a>';
-			nodes += '<h4 class="header">' + datas.short_name + '</h4>';
-			nodes += '<p class="desp">' + datas.short_intro + '</p>';
-			nodes += '</li>';
-			return $(nodes); //踩坑了～需要转为JQ对象..否则上面无法使用find到img
-		},
+    transformNode: function transformNode(datas) {
+      var nodes = '';
+      nodes += '<li class="item">';
+      nodes += '<a href="' + datas.url + '" class="link"><img src="' + datas.img_url + '" alt=""></a>';
+      nodes += '<h4 class="header">' + datas.short_name + '</h4>';
+      nodes += '<p class="desp">' + datas.short_intro + '</p>';
+      nodes += '</li>';
+      return $(nodes); //踩坑了～需要转为JQ对象..否则上面无法使用find到img
+    },
 
-		cascadeType: function cascadeType(datas) {
-			var _this = this;
-			var minEle = Math.min.apply(Math, this.cascadeArray); //最小值-。-
-			var minIdx = this.cascadeArray.indexOf(minEle); //最小值坐标
-			$(datas).css({
-				opacity: 1,
-				top: _this.cascadeArray[minIdx],
-				left: $(datas).outerWidth(true) * minIdx
-			});
-			this.cascadeArray[minIdx] += $(datas).outerHeight(true);
-			_this.picCt.height(Math.max.apply(Math, this.cascadeArray));
-			//这是把容器的高度撑开的关键，如无此部，会导致隐藏的标志置顶
-		}
-	};
+    cascadeType: function cascadeType(datas) {
+      var _this = this;
+      var minEle = Math.min.apply(Math, this.cascadeArray); //最小值-。-
+      var minIdx = this.cascadeArray.indexOf(minEle); //最小值坐标
+      $(datas).css({
+        opacity: 1,
+        top: _this.cascadeArray[minIdx],
+        left: $(datas).outerWidth(true) * minIdx
+      });
+      this.cascadeArray[minIdx] += $(datas).outerHeight(true);
+      _this.picCt.height(Math.max.apply(Math, this.cascadeArray));
+      //这是把容器的高度撑开的关键，如无此部，会导致隐藏的标志置顶
+    }
+  };
 
-	return {
-		autoGo: function autoGo($ct) {
-			new _Cascade($ct);
-		}
-	};
+  return {
+    autoGo: function autoGo($ct) {
+      new _Cascade($ct);
+    }
+  };
 }();
 
 // cascade.autoGo($('.ct-waterfall'))
@@ -2715,32 +2715,32 @@ module.exports = cascade;
 /* WEBPACK VAR INJECTION */(function($) {
 
 function GoTop() {
-    //置顶
-    this.createNode();
-    this.bindEvent();
+  //置顶
+  this.createNode();
+  this.bindEvent();
 }
 GoTop.prototype = {
-    createNode: function createNode() {
-        this.target = $('<div class="goTop">Top</div>');
-        $('body').append(this.target);
-    },
-    bindEvent: function bindEvent() {
-        var _this = this;
-        $(window).on('scroll', function () {
-            var scrollTop = $(window).scrollTop();
-            if (scrollTop > 500) {
-                _this.target.fadeIn(1000);
-            } else {
-                _this.target.fadeOut(500);
-            }
-        });
-        _this.target.click(function () {
-            $('html, body').animate({
-                scrollTop: 0
-            }, 'slow');
-        });
-    }
-    // new GoTop()
+  createNode: function createNode() {
+    this.target = $('<div class="goTop"></div>');
+    $('body').append(this.target);
+  },
+  bindEvent: function bindEvent() {
+    var _this = this;
+    $(window).on('scroll', function () {
+      var scrollTop = $(window).scrollTop();
+      if (scrollTop > 500) {
+        _this.target.fadeIn(1000);
+      } else {
+        _this.target.fadeOut(500);
+      }
+    });
+    _this.target.click(function () {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 'slow');
+    });
+  }
+  // new GoTop()
 };module.exports = GoTop;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
